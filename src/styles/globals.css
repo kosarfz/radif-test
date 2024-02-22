@@ -22,11 +22,9 @@ body {
   direction: rtl;
 }
 
-.layoutCard {
-  background-color: white;
-  border-radius: 2rem;
-  border: 1px solid #0000001a;
-}
+/* .button-width {
+  width: 20%;
+} */
 /* @layer utilities {
   .text-balance {
     text-wrap: balance;

@@ -6,20 +6,40 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    "text-primary",
+    "text-secondary",
+    "text-gray",
+    "text-red",
+
+    "bg-primary",
+    "bg-secondary",
+    "bg-gray",
+    "bg-red",
+
+    "bg-primary-light",
+    "bg-secondary-light",
+    "bg-gray-light",
+    "bg-red-light",
+  ],
   theme: {
     extend: {
       colors: {
         primary: {
-          100: "#9747FF",
+          DEFAULT: "#9747FF",
+          light: "#9747FF10",
         },
         secondary: {
-          100: "#C68F00",
+          DEFAULT: "#C68F00",
+          light: "#C68F0010",
         },
         gray: {
-          100: "#444444",
+          DEFAULT: "#444444",
+          light: "#44444410",
         },
         red: {
-          200: "#666fff",
+          DEFAULT: "#FF0000",
+          light: "#FF000010",
         },
       },
       borderRadius: {
