@@ -7,37 +7,37 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   safelist: [
-    "text-primary",
-    "text-secondary",
-    "text-gray",
-    "text-red",
+    "text-paying",
+    "text-sample",
+    "text-unchecked",
+    "text-rejected",
 
-    "bg-primary",
-    "bg-secondary",
-    "bg-gray",
-    "bg-red",
+    "bg-paying",
+    "bg-sample",
+    "bg-unchecked",
+    "bg-rejected",
 
-    "bg-primary-light",
-    "bg-secondary-light",
-    "bg-gray-light",
-    "bg-red-light",
+    "bg-paying-light",
+    "bg-sample-light",
+    "bg-unchecked-light",
+    "bg-rejected-light",
   ],
   theme: {
     extend: {
       colors: {
-        primary: {
+        paying: {
           DEFAULT: "#9747FF",
           light: "#9747FF10",
         },
-        secondary: {
+        sample: {
           DEFAULT: "#C68F00",
           light: "#C68F0010",
         },
-        gray: {
+        unchecked: {
           DEFAULT: "#444444",
           light: "#44444410",
         },
-        red: {
+        rejected: {
           DEFAULT: "#FF0000",
           light: "#FF000010",
         },

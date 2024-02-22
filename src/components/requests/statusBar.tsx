@@ -1,35 +1,62 @@
 import React, { useEffect, useMemo, useState } from "react";
-import Button from "../common/button";
 import { useRouter } from "next/router";
 
-const statusBar = () => {
-  const statusTypes = useMemo(() => {
+import Button from "../common/button";
+import { ValueOf } from "next/dist/shared/lib/constants";
+import { log } from "console";
+
+type GetNameFromList<T extends readonly { status: string }[]> =
+  T[number]["status"];
+
+const list = [
+  {
+    status: "unchecked",
+    count: "۱۲۵۰",
+  },
+  {
+    status: "paying",
+    count: "۱۲۵۰",
+  },
+  {
+    status: "sample",
+    count: "۱۲۵۰",
+  },
+  {
+    status: "rejected",
+    count: "۱۲۵۰",
+  },
+];
+
+type values = GetNameFromList<typeof list>;
+
+const StatusBar = () => {
+  const statusList: Array<{ status: values; count: string }> = useMemo(() => {
     return [
       {
-        value: "unchecked",
-        title: "در انتظار بررسی",
+        status: "unchecked",
         count: "۱۲۵۰",
-        color: "gray",
       },
       {
-        value: "paying",
-        title: "در انتظار پرداخت",
+        status: "paying",
         count: "۱۲۵۰",
-        color: "primary",
       },
       {
-        value: "sample",
-        title: "در انتظار نمونه",
+        status: "sample",
         count: "۱۲۵۰",
-        color: "secondary",
       },
       {
-        value: "rejected",
-        title: "رد شده",
+        status: "rejected",
         count: "۱۲۵۰",
-        color: "red",
       },
     ];
+  }, []);
+  const statusTypes: Record<values, string> = useMemo(() => {
+    return {
+      unchecked: "در انتظار بررسی",
+      rejected: "رد شده",
+      paying: "در انتظار پرداخت",
+      sample: "در انتظار نمونه",
+    };
   }, []);
   const router = useRouter();
   const [activeStatus, setActiveStatus] = useState("unchecked");
@@ -40,30 +67,30 @@ const statusBar = () => {
 
   return (
     <>
-      <div className="w-full p-24 justify-center flex">
-        {statusTypes.map((item: any) => (
+      <div className="w-full px-24 pb-20 justify-center flex">
+        {statusList.map((item: any) => (
           <Button
-            key={item.value}
+            key={item.status}
             onClick={() => {
-              item.value === router.query.tab
+              item.status === router.query.tab
                 ? delete router.query.tab
-                : (router.query.tab = item.value);
+                : (router.query.tab = item.status);
               router.push(router);
             }}
             className={`${
-              item.value === router.query.tab
-                ? `bg-${item.color}`
-                : `bg-${item.color}-light`
+              item.status === router.query.tab
+                ? `bg-${item.status}`
+                : `bg-${item.status}-light`
             } ${
-              item.value === router.query.tab
+              item.status === router.query.tab
                 ? `text-white`
-                : `text-${item.color}`
+                : `text-${item.status}`
             } text-16 mx-3`}
           >
             <span className="bg-white rounded p-1 ml-3 text-black text-14">
               {item.count}
             </span>
-            {item.title}
+            {statusTypes[item.status]}
           </Button>
         ))}
       </div>
@@ -71,4 +98,4 @@ const statusBar = () => {
   );
 };
 
-export default statusBar;
+export default StatusBar;
